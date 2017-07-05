@@ -16,15 +16,51 @@
             <input type="email" id="email" name="email">
         </div>
         <div>
-            {% for interest in interests: %}
-            <input type="checkbox" id="{{ interest }}" value="{{ interest }}">
-            <label for="{{ interest }}">{{ translations[interest] }}</label>
-            {% endfor %}
+            
+            <input type="checkbox" id="support" value="support">
+            <label for="support">幫助使用者</label>
+            
+            <input type="checkbox" id="qa" value="qa">
+            <label for="qa">品質檢測</label>
+            
+            <input type="checkbox" id="coding" value="coding">
+            <label for="coding">寫程式</label>
+            
+            <input type="checkbox" id="marketing" value="marketing">
+            <label for="marketing">協助宣傳</label>
+            
+            <input type="checkbox" id="localization" value="localization">
+            <label for="localization">在地化與翻譯</label>
+            
+            <input type="checkbox" id="webdev" value="webdev">
+            <label for="webdev">網頁開發</label>
+            
+            <input type="checkbox" id="addons" value="addons">
+            <label for="addons">附加元件</label>
+            
+            <input type="checkbox" id="design" value="design">
+            <label for="design">視覺設計</label>
+            
+            <input type="checkbox" id="documentation" value="documentation">
+            <label for="documentation">撰寫文件</label>
+            
+            <input type="checkbox" id="education" value="education">
+            <label for="education">教育</label>
+            
+            <input type="checkbox" id="suggestions" value="suggestions">
+            <label for="suggestions">我有關於 Firefox 的建議</label>
+            
+            <input type="checkbox" id="issues" value="issues">
+            <label for="issues">我遇到了 Firefox 的問題，需要幫助</label>
+            
+            <input type="checkbox" id="other" value="other">
+            <label for="other">其他</label>
+            
         </div>
         <button id="submit" type="submit">送出</button>
     </form>
     <script charset="utf-8">
-      REQUEST_URL = "<AWS_API_GATEWAY>/ReplyMail";
+      REQUEST_URL = "https://i6w785e1ld.execute-api.us-west-2.amazonaws.com/prod/SendVolunteerMail";
       document.getElementById("contact_form").onsubmit = function(evt){
         evt.preventDefault();
 
@@ -62,6 +98,7 @@
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(data));
         document.getElementById("submit").disabled = true;
+        document.getElementById("submit").innerText = "傳送中...";
       };
     </script>
   </body>
