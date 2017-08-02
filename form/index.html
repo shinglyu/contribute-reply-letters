@@ -16,34 +16,88 @@
             <input type="email" id="email" name="email">
         </div>
         <div>
-            <input type="checkbox" id="interest1" name="interest1">
-            <label for="interest1">interest1</label>
-            <input type="checkbox" id="interest2" name="interest2">
-            <label for="interest2">interest2</label>
-            <input type="checkbox" id="interest3" name="interest3">
-            <label for="interest3">interest3</label>
+            
+            <input type="checkbox" id="support" value="support">
+            <label for="support">幫助使用者</label>
+            
+            <input type="checkbox" id="qa" value="qa">
+            <label for="qa">品質檢測</label>
+            
+            <input type="checkbox" id="coding" value="coding">
+            <label for="coding">寫程式</label>
+            
+            <input type="checkbox" id="marketing" value="marketing">
+            <label for="marketing">協助宣傳</label>
+            
+            <input type="checkbox" id="localization" value="localization">
+            <label for="localization">在地化與翻譯</label>
+            
+            <input type="checkbox" id="webdev" value="webdev">
+            <label for="webdev">網頁開發</label>
+            
+            <input type="checkbox" id="addons" value="addons">
+            <label for="addons">附加元件</label>
+            
+            <input type="checkbox" id="design" value="design">
+            <label for="design">視覺設計</label>
+            
+            <input type="checkbox" id="documentation" value="documentation">
+            <label for="documentation">撰寫文件</label>
+            
+            <input type="checkbox" id="education" value="education">
+            <label for="education">教育</label>
+            
+            <input type="checkbox" id="suggestions" value="suggestions">
+            <label for="suggestions">我有關於 Firefox 的建議</label>
+            
+            <input type="checkbox" id="issues" value="issues">
+            <label for="issues">我遇到了 Firefox 的問題，需要幫助</label>
+            
+            <input type="checkbox" id="other" value="other">
+            <label for="other">其他</label>
+            
         </div>
-        <button type="submit">送出</button>
+        <button id="submit" type="submit">送出</button>
     </form>
     <script charset="utf-8">
-      REQUEST_URL = "<AWS_API_GATEWAY>/MozTwContactForm";
+      REQUEST_URL = "<AWS_API_GATEWAY>/ReplyMail";
       document.getElementById("contact_form").onsubmit = function(evt){
         evt.preventDefault();
+
+        var interests = [];
+        var inputs = document.getElementsByTagName('input');
+        for(var i=0; i<inputs.length; i++) {
+          if(inputs[i].type == 'checkbox' && inputs[i].checked == true) {interests.push(inputs[i].value);}
+        }
 
         var data = {
           "name": document.getElementById("name").value,
           "email": document.getElementById("email").value,
+          "interests": interests,
         }
+        // Debug logging
         console.log(data)
 
         // The following submission code is inspired by https://github.com/roman01la/JSONFormData
 
         var xhr = new XMLHttpRequest();
 
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // TODO: l10n
+            alert("表單已成功送出，感謝您的填寫。")
+            return;
+          }
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 200) {
+            // TODO: l10n
+            alert("糟糕，我們的主機似乎遇到了技術困難，請稍後重新整理再試一次。")
+            return;
+          }
+        }
         xhr.open('POST', REQUEST_URL);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(data));
-        // TODO: error handling
+        document.getElementById("submit").disabled = true;
       };
     </script>
   </body>
