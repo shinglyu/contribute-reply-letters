@@ -3,60 +3,71 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>MozTW Volunteer Form</title>
+    <title>留下資料由專人與您聯繫</title>
+    <style type="text/css">
+      label {
+        display:inline-block;
+        min-width: 7em;
+      }
+    </style>
   </head>
   <body>
+    <h1>參與 Mozilla</h1>
+    <p>Mozilla 存在的目的是提供網際網路上的開放、創新、與機會。我們需要像您這樣的人參與，才能實踐我們的使命。請看看您可以如何參與與支援 Mozilla，讓人們未來的生活中處處都有所改變！<p>
     <form id="contact_form">
         <div>
-            <label for="name">名字/暱稱:</label>
+            <h2>您的聯絡方式</h2>
+            <label for="name">姓名或暱稱:</label>
             <input type="text" id="name" name="name">
         </div>
         <div>
-            <label for="mail">E-mail:</label>
+            <label for="mail">電子郵件地址:</label>
             <input type="email" id="email" name="email">
         </div>
-        <div>
+        <div id="interests">
+            <h2>您的興趣</h2>
             
             <input type="checkbox" id="support" value="support">
-            <label for="support">幫助使用者</label>
+            <label for="support">幫助使用者</label><br>
             
             <input type="checkbox" id="qa" value="qa">
-            <label for="qa">品質檢測</label>
+            <label for="qa">品質檢測</label><br>
             
             <input type="checkbox" id="coding" value="coding">
-            <label for="coding">寫程式</label>
+            <label for="coding">寫程式</label><br>
             
             <input type="checkbox" id="marketing" value="marketing">
-            <label for="marketing">協助宣傳</label>
+            <label for="marketing">協助宣傳</label><br>
             
             <input type="checkbox" id="localization" value="localization">
-            <label for="localization">在地化與翻譯</label>
+            <label for="localization">在地化與翻譯</label><br>
             
             <input type="checkbox" id="webdev" value="webdev">
-            <label for="webdev">網頁開發</label>
+            <label for="webdev">網頁開發</label><br>
             
             <input type="checkbox" id="addons" value="addons">
-            <label for="addons">附加元件</label>
+            <label for="addons">附加元件</label><br>
             
             <input type="checkbox" id="design" value="design">
-            <label for="design">視覺設計</label>
+            <label for="design">視覺設計</label><br>
             
             <input type="checkbox" id="documentation" value="documentation">
-            <label for="documentation">撰寫文件</label>
+            <label for="documentation">撰寫文件</label><br>
             
             <input type="checkbox" id="education" value="education">
-            <label for="education">教育</label>
+            <label for="education">教育</label><br>
             
             <input type="checkbox" id="suggestions" value="suggestions">
-            <label for="suggestions">我有關於 Firefox 的建議</label>
+            <label for="suggestions">我有關於 Firefox 的建議</label><br>
             
             <input type="checkbox" id="issues" value="issues">
-            <label for="issues">我遇到了 Firefox 的問題，需要幫助</label>
+            <label for="issues">我遇到了 Firefox 的問題，需要幫助</label><br>
             
             <input type="checkbox" id="other" value="other">
-            <label for="other">其他</label>
+            <label for="other">其他</label><br>
             
         </div>
+        <p>上列資料僅作為發送參與社群文件與未來活動通知之用，Mozilla 及 Mozilla 台灣社群不會將您的個人資料外流，並將依照 Mozilla 隱私資料處理原則處理您的資料。</p>
         <button id="submit" type="submit">送出</button>
     </form>
     <script charset="utf-8">
